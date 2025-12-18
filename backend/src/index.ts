@@ -6,6 +6,7 @@ import { createClient } from '@supabase/supabase-js';
 dotenv.config();
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
@@ -13,6 +14,10 @@ const supabase = createClient(
     process.env.SUPABASE_URL || '',
     process.env.SUPABASE_KEY || ''
 );
+
+app.get('/', (req, res) => {
+    res.json({ message: "Oceans API funcionando correctamente 🚀" });
+});
 
 app.get('/products', async (req, res) => {
     const { data, error } = await supabase.from('products').select('*');
@@ -52,5 +57,9 @@ app.post('/orders', async (req, res) => {
     res.status(201).json(order[0]);
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+export default app;

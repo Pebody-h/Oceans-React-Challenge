@@ -1,18 +1,19 @@
-🌊 Oceans React Challenge - Full Stack Order Manager
-Este proyecto es una aplicación robusta para la gestión de órdenes en un restaurante, permitiendo el control de productos, creación de pedidos en tiempo real y visualización de métricas en un dashboard profesional.
+Claro 🙂 Aquí tienes **el resto del README convertido y ordenado correctamente en Markdown**, manteniendo tu contenido pero con mejor estructura, bloques de código y encabezados coherentes. Puedes copiarlo y reemplazar desde **“2. Variables de Entorno”** en adelante, o usarlo completo si quieres.
 
-🚀 Guía de Inicio Rápido (Local)
-1. Configuración de la Base de Datos (Supabase)
-Para que el proyecto funcione, necesitas una instancia de PostgreSQL. Sigue estos pasos:
+---
 
-Crea una cuenta gratuita en Supabase.
+## 🚀 Guía de Configuración Local
 
-Crea un nuevo proyecto llamado oceans-challenge.
+### 1. Preparación de la Base de Datos (Supabase)
 
-Ve al SQL Editor y ejecuta el siguiente script para crear las tablas:
+El proyecto requiere una base de datos PostgreSQL. Siga estos pasos:
 
-SQL
+1. Regístrese en [Supabase.com](https://supabase.com/).
+2. Cree un nuevo proyecto (ej. `oceans-challenge`).
+3. Vaya al **SQL Editor** y ejecute el siguiente script para crear las tablas y relaciones:
 
+```sql
+-- Tabla de Productos
 CREATE TABLE products (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   name TEXT NOT NULL,
@@ -20,74 +21,82 @@ CREATE TABLE products (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- Tabla de Órdenes
 CREATE TABLE orders (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   total DECIMAL(10,2) NOT NULL,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- Relación Órdenes y Productos (Muchos a Muchos)
 CREATE TABLE order_items (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   order_id UUID REFERENCES orders(id) ON DELETE CASCADE,
   product_id UUID REFERENCES products(id),
   quantity INTEGER DEFAULT 1
 );
-Ve a Project Settings > API y copia la Project URL y la anon public key.
+```
 
-2. Variables de Entorno
-Crea los archivos .env siguiendo estas rutas:
+4. Vaya a **Project Settings → API** y obtenga:
 
-En ./backend/.env:
+   * **Project URL**
+   * **Anon Public Key**
 
-Fragmento de código
+---
 
+### 2. 🔐 Variables de Entorno
+
+Debe crear los archivos `.env` manualmente antes de iniciar el proyecto para asegurar la correcta conexión entre servicios.
+
+#### 📁 Backend (`./backend/.env`)
+
+```env
 PORT=3000
-SUPABASE_URL=tu_url_de_supabase
-SUPABASE_KEY=tu_anon_key_de_supabase
-En ./frontend/.env:
+SUPABASE_URL=tu_url_de_supabase_aqui
+SUPABASE_KEY=tu_anon_key_de_supabase_aqui
+```
 
-Fragmento de código
+#### 📁 Frontend (`./frontend/.env`)
 
+```env
 VITE_API_URL=http://localhost:3000
-3. Ejecución con Docker (Recomendado)
-Si tienes Docker instalado, solo necesitas ejecutar un comando en la raíz del proyecto:
+```
 
-Bash
+---
 
+### 3. 🐳 Ejecución con Docker (Recomendado)
+
+Asegúrese de tener **Docker Desktop** activo y ejecute en la raíz del proyecto:
+
+```bash
 docker-compose up --build
-Frontend: http://localhost:5173
+```
 
-Backend: http://localhost:3000
+Una vez iniciado, los servicios estarán disponibles en:
 
-4. Ejecución con NPM (Desarrollo Manual)
-Si prefieres correr los servicios por separado:
+* **App React:** [http://localhost:5173](http://localhost:5173)
+* **API Express:** [http://localhost:3000](http://localhost:3000)
 
-Levantar el Backend:
+---
 
-Bash
+### 4. ▶️ Ejecución Manual (NPM)
 
+Si prefiere no usar Docker, asegúrese de tener **Node.js 20+** instalado en su sistema.
+
+#### 🧠 Servidor Backend
+
+```bash
 cd backend
 npm install
 npm run dev
-Levantar el Frontend:
+```
 
-Bash
+#### 🎨 Cliente Frontend
 
+```bash
 cd frontend
 npm install
 npm run dev
-🏛️ Arquitectura y Decisiones Técnicas
-El proyecto sigue una Arquitectura de Capas (Layered Architecture) para separar las responsabilidades:
+```
 
-Backend: Desarrollado con Node.js + Express + TypeScript. Se utiliza el patrón Controller-Service para desacoplar la lógica de las rutas del acceso a datos.
-
-Frontend: Construido con React 19 y Vite 7. Se implementó Tailwind CSS v4 para un diseño moderno y React Hook Form para una gestión eficiente de formularios sin renders innecesarios.
-
-Contenedores: Se utiliza Docker con imágenes de Node 20-alpine para garantizar que el entorno de ejecución sea idéntico en cualquier máquina, solucionando problemas de versiones de Node.
-
-🛠️ Stack Tecnológico
-Frontend: React, TypeScript, Vite, Tailwind CSS, Lucide Icons, Axios.
-
-Backend: Express, TypeScript, Supabase SDK.
-
-Infraestructura: Docker, Docker Compose, Vercel (Deployment).
+---

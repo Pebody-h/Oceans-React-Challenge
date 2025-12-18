@@ -96,3 +96,30 @@ npm run dev
 ```
 
 ---
+
+## 🛠️ Stack Tecnológico
+
+### 💻 Frontend (Cliente)
+* **React 19:** Última versión estable de la librería para interfaces de usuario.
+* **TypeScript:** Tipado estricto para un código más robusto y mantenible.
+* **Vite 7:** Herramienta de construcción (bundler) de última generación para un desarrollo ultra rápido.
+* **Tailwind CSS v4:** Framework de utilidades CSS para un diseño moderno y responsivo.
+* **React Hook Form:** Gestión eficiente de formularios y validaciones.
+* **Axios:** Cliente HTTP para la comunicación con la API.
+* **Lucide React:** Set de iconos vectoriales de alta calidad.
+* **React Router DOM v7:** Manejo de navegación y rutas de la aplicación.
+
+### ⚙️ Backend (API)
+* **Node.js & Express:** Entorno de ejecución y framework para la construcción de la API REST.
+* **TypeScript:** Implementado en el servidor para garantizar la integridad de los datos.
+* **Supabase SDK:** Cliente oficial para la integración con servicios de base de datos.
+* **CORS:** Middleware para la gestión de seguridad y acceso entre dominios.
+* **Dotenv:** Manejo seguro de variables de entorno.
+
+### 🗄️ Base de Datos
+* **PostgreSQL:** Motor de base de datos relacional potente y escalable.
+* **Supabase:** Plataforma Backend-as-a-Service para el hosting de la base de datos en la nube.
+
+### 🐳 Infraestructura y Despliegue
+* **Docker & Docker Compose:** Contenerización de servicios para asegurar un entorno de ejecución idéntico (Node 20-alpine).
+* **Vercel:** Despliegue automatizado (CI/CD) para el Frontend y Serverless Functions para el Backend.
